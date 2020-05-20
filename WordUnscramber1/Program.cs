@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WordUnscramber1.Data;
+using WordUnscramber1.Workers;
 
 namespace WordUnscramber1
 {
     class Program
     {
+        private const string wordListFileName = "wordlist.txt";
+
+        private static readonly FileReader _fileReader = new FileReader();
+        private static readonly WordMatcher _wordMatcher = new WordMatcher();
+
+
+
         static void Main(string[] args)
         {
             bool continueWordUnscramble = true;
@@ -64,13 +73,13 @@ namespace WordUnscramber1
         {
             string[] wordList = _fileReader.Read(wordListFileName);
 
-            List<MatchedWord> matchedWords = wordMatcher.Match();
+            List<MatchedWord> matchedWords = _wordMatcher.Match(scrambleWords, wordList);
 
             if (matchedWords.Any())
             {
                 foreach (var matchedWord in matchedWords)
                 {
-
+                    Console.WriteLine("Match found for {0}: {1}", matchedWord.ScrambleWord, matchedWord.Word);
                 }
             }
         }

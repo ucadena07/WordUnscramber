@@ -1,4 +1,6 @@
 ﻿using System;
+using WordUnscramber1.Data;
+
 namespace WordUnscramber1.Workers
 {
     public class WordMatcher
