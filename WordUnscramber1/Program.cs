@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WordUnscramber1
 {
@@ -27,28 +29,50 @@ namespace WordUnscramber1
                         break;
                 }
 
-                var continueWordUnscrambleDecision = string.Empty;
+                var continueDecision = string.Empty;
                 do
                 {
                     Console.WriteLine("Do you want to continue? Y/N");
-                    continueWordUnscrambleDecision = (Console.ReadLine() ?? string.Empty);
+                    continueDecision = (Console.ReadLine() ?? string.Empty);
 
-                } while (!continueWordUnscrambleDecision.Equals("Y", StringComparison.OrdinalIgnoreCase)
-                && !continueWordUnscrambleDecision.Equals("N", StringComparison.OrdinalIgnoreCase));
+                } while (
+                    !continueDecision.Equals("Y", StringComparison.OrdinalIgnoreCase)
+                    && !continueDecision.Equals("N", StringComparison.OrdinalIgnoreCase)
+                        );
 
-                continueWordUnscramble = continueWordUnscrambleDecision.Equals("Y", StringComparison.OrdinalIgnoreCase);
+                continueWordUnscramble = continueDecision.Equals("Y", StringComparison.OrdinalIgnoreCase);
 
             } while (continueWordUnscramble);
         }
 
         private static void ExecuteScrambleWordsManualEntryScenerio()
         {
-            
+            var manualInput = Console.ReadLine() ?? string.Empty;
+            string[] scrambleWords = manualInput.Split(',');
+            DisplayMatchUnscrambleWords(scrambleWords);
         }
+
 
         private static void ExecuteScrambleWordsInFileScenerio()
         {
-            
+            var fileName = Console.ReadLine() ?? string.Empty;
+            string[] scrambleWords = _fileReader.Read(fileName);
+            DisplayMatchUnscrambleWords(scrambleWords);
+        }
+
+        private static void DisplayMatchUnscrambleWords(string[] scrambleWords)
+        {
+            string[] wordList = _fileReader.Read(wordListFileName);
+
+            List<MatchedWord> matchedWords = wordMatcher.Match();
+
+            if (matchedWords.Any())
+            {
+                foreach (var matchedWord in matchedWords)
+                {
+
+                }
+            }
         }
     }
 }
