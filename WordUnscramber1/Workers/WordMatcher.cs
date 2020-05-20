@@ -1,17 +1,54 @@
 ﻿using System;
+using System.Collections.Generic;
 using WordUnscramber1.Data;
 
 namespace WordUnscramber1.Workers
 {
-    public class WordMatcher
+    class WordMatcher
     {
-        public WordMatcher()
+        
+        public List<MatchedWord> Match(string[] scrambledWords, string[] wordList)
         {
+            var matchedWords = new List<MatchedWord>();
+
+            foreach (var scrambledWord in scrambledWords)
+            {
+                foreach (var word in wordList)
+                {
+                    if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase))
+                    {
+                        matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                    }
+                    else
+                    {
+                        var scrambledWordArray = scrambledWord.ToCharArray();
+                        var wordArray = word.ToCharArray();
+
+                        Array.Sort(scrambledWordArray);
+                        Array.Sort(wordArray);
+
+                        var sortedScrambledWord = new string(scrambledWordArray);
+                        var sortedWord = new string(wordArray);
+
+                        if(sortedScrambledWord.Equals(sortedWord, StringComparison.OrdinalIgnoreCase))
+                        {
+                            matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                        }
+                    }
+                }
+            }
+            return matchedWords;
         }
 
-        internal System.Collections.Generic.List<MatchedWord> Match(string[] scrambleWords, string[] wordList)  
+        private MatchedWord BuildMatchedWord(string scrambledWord, string word)
         {
-            throw new NotImplementedException();
+            MatchedWord matchedWord = new MatchedWord
+            {
+                ScrambleWord = scrambledWord,
+                Word = word
+            };
+            return matchedWord;
+           
         }
     }
 }
