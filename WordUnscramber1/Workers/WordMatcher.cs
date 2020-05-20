@@ -30,7 +30,7 @@ namespace WordUnscramber1.Workers
                         var sortedScrambledWord = new string(scrambledWordArray);
                         var sortedWord = new string(wordArray);
 
-                        if(sortedScrambledWord.Equals(sortedWord, StringComparison.OrdinalIgnoreCase))
+                        if (sortedScrambledWord.Equals(sortedWord, StringComparison.OrdinalIgnoreCase))
                         {
                             matchedWords.Add(BuildMatchedWord(scrambledWord, word));
                         }
@@ -44,7 +44,7 @@ namespace WordUnscramber1.Workers
         {
             MatchedWord matchedWord = new MatchedWord
             {
-                ScrambleWord = scrambledWord,
+                ScrambledWord = scrambledWord,
                 Word = word
             };
             return matchedWord;
