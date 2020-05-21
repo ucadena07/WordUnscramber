@@ -22,7 +22,7 @@ namespace WordUnscramber1
                 bool continueWordUnscramble = true;
                 do
                 {
-                    Console.WriteLine(Constants.OptionOnHowToEnterScrambledWords);
+                    Console.Write(Constants.OptionOnHowToEnterScrambledWords);
                     var option = Console.ReadLine() ?? string.Empty;
 
                     switch (option.ToUpper())
