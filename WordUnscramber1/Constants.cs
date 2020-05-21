@@ -5,7 +5,7 @@ namespace WordUnscramber1
     {
         public const string WordListFileName = "wordlist.txt";
 
-        public const string OptionOnHowToEnterScrambledWords = "Enter scrambled word(s) manually or as a file: F- file/M - manual";
+        public const string OptionOnHowToEnterScrambledWords = "Enter scrambled word(s) manually or as a file: F - file/M - manual";
         public const string OptionsOnContinuingTheProgram = "Would you like to continue? Y/N";
 
         public const string EnterScrambkedWordsViaFile = "Enter full path including the file name: ";

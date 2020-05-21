@@ -21,8 +21,8 @@ namespace WordUnscramber1.Workers
                     }
                     else
                     {
-                        var scrambledWordArray = scrambledWord.ToCharArray();
-                        var wordArray = word.ToCharArray();
+                        char[] scrambledWordArray = scrambledWord.ToLower().ToCharArray();
+                        char[] wordArray = word.ToLower().ToCharArray();
 
                         Array.Sort(scrambledWordArray);
                         Array.Sort(wordArray);
@@ -30,7 +30,7 @@ namespace WordUnscramber1.Workers
                         var sortedScrambledWord = new string(scrambledWordArray);
                         var sortedWord = new string(wordArray);
 
-                        if (sortedScrambledWord.Equals(sortedWord, StringComparison.OrdinalIgnoreCase))
+                        if(sortedScrambledWord.Equals(sortedWord, StringComparison.OrdinalIgnoreCase))
                         {
                             matchedWords.Add(BuildMatchedWord(scrambledWord, word));
                         }
@@ -47,6 +47,7 @@ namespace WordUnscramber1.Workers
                 ScrambledWord = scrambledWord,
                 Word = word
             };
+
             return matchedWord;
            
         }
